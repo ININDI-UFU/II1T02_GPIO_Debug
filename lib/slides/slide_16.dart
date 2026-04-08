@@ -156,25 +156,31 @@ class _WorkflowPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final sx = size.width / 320;
-    final sy = size.height / 400;
+    final cx = size.width / 2; // center X
+    final totalH = size.height;
+
+    // Distribute 6 items with generous spacing
+    final boxW = (size.width * 0.55).clamp(120.0, 340.0);
+    final boxH = (totalH * 0.09).clamp(28.0, 50.0);
+    final gap = ((totalH - boxH * 6) / 7).clamp(12.0, 30.0);
+
+    double yAt(int i) => gap + i * (boxH + gap) + boxH / 2;
 
     final steps = [
-      ('1. Identificar\no Bug', const Color(0xFFFF6B6B), 160.0, 30.0),
-      ('2. Reproduzir\no Erro', const Color(0xFFFF9F0A), 160.0, 90.0),
-      ('3. Localizar\na Causa', const Color(0xFFFFD54F), 160.0, 150.0),
-      ('Bug\nEncontrado?', const Color(0xFF00D9FF), 160.0, 220.0),
-      ('5. Corrigir\no Código', const Color(0xFF00E676), 160.0, 295.0),
-      ('6. Testar\nSolução', const Color(0xFF7C4DFF), 160.0, 360.0),
+      ('1. Identificar\no Bug', const Color(0xFFFF6B6B)),
+      ('2. Reproduzir\no Erro', const Color(0xFFFF9F0A)),
+      ('3. Localizar\na Causa', const Color(0xFFFFD54F)),
+      ('Bug\nEncontrado?', const Color(0xFF00D9FF)),
+      ('5. Corrigir\no Código', const Color(0xFF00E676)),
+      ('6. Testar\nSolução', const Color(0xFF7C4DFF)),
     ];
 
     for (int i = 0; i < steps.length; i++) {
-      final (text, color, x, y) = steps[i];
-      final cx = x * sx;
-      final cy = y * sy;
+      final (text, color) = steps[i];
+      final cy = yAt(i);
       final isDecision = i == 3;
-      final w = (isDecision ? 80 : 100) * sx;
-      final h = (isDecision ? 45 : 35) * sy;
+      final halfW = (isDecision ? boxW * 0.5 : boxW / 2);
+      final halfH = isDecision ? boxH * 0.7 : boxH / 2;
 
       final paint = Paint()
         ..color = color.withValues(alpha: 0.2)
@@ -185,66 +191,76 @@ class _WorkflowPainter extends CustomPainter {
         ..strokeWidth = 1.5;
 
       if (isDecision) {
-        // Diamond
         final path = Path()
-          ..moveTo(cx, cy - h)
-          ..lineTo(cx + w, cy)
-          ..lineTo(cx, cy + h)
-          ..lineTo(cx - w, cy)
+          ..moveTo(cx, cy - halfH)
+          ..lineTo(cx + halfW, cy)
+          ..lineTo(cx, cy + halfH)
+          ..lineTo(cx - halfW, cy)
           ..close();
         canvas.drawPath(path, paint);
         canvas.drawPath(path, borderPaint);
       } else {
         final rrect = RRect.fromRectAndRadius(
-          Rect.fromCenter(center: Offset(cx, cy), width: w * 2, height: h * 2),
-          Radius.circular(8 * sx),
+          Rect.fromCenter(
+            center: Offset(cx, cy),
+            width: halfW * 2,
+            height: halfH * 2,
+          ),
+          const Radius.circular(8),
         );
         canvas.drawRRect(rrect, paint);
         canvas.drawRRect(rrect, borderPaint);
       }
 
       // Text
+      final fontSize = (boxH * 0.28).clamp(9.0, 14.0);
       final tp = TextPainter(
         text: TextSpan(
           text: text,
           style: TextStyle(
             color: color,
-            fontSize: 10 * sx,
+            fontSize: fontSize,
             fontWeight: FontWeight.w600,
             height: 1.3,
           ),
         ),
         textAlign: TextAlign.center,
         textDirection: TextDirection.ltr,
-      )..layout(maxWidth: w * 2);
+      )..layout(maxWidth: halfW * 1.8);
       tp.paint(canvas, Offset(cx - tp.width / 2, cy - tp.height / 2));
 
-      // Arrow to next
+      // Arrow to next (skip decision node)
       if (i < steps.length - 1 && i != 3) {
-        final nextY = steps[i + 1].$4 * sy;
+        final nextHalfH = (i + 1 == 3) ? boxH * 0.7 : boxH / 2;
         _drawArrow(
           canvas,
-          Offset(cx, cy + h),
-          Offset(cx, nextY - (i + 1 == 3 ? 45 * sy : 35 * sy)),
+          Offset(cx, cy + halfH),
+          Offset(cx, yAt(i + 1) - nextHalfH),
           Colors.white.withValues(alpha: 0.4),
         );
       }
     }
 
-    // Decision arrows
-    // Yes -> down
+    // Decision node measurements
+    final dY = yAt(3);
+    final dHalfH = boxH * 0.7;
+    final dHalfW = boxW * 0.5;
+
+    // Yes arrow -> down to step 5
     _drawArrow(
       canvas,
-      Offset(160 * sx, 265 * sy),
-      Offset(160 * sx, 260 * sy),
+      Offset(cx, dY + dHalfH),
+      Offset(cx, yAt(4) - boxH / 2),
       const Color(0xFF00E676),
     );
-    // No -> loop back
+
+    // No -> loop back left and up to step 2
+    final loopX = cx - dHalfW - 40;
     final noPath = Path()
-      ..moveTo(80 * sx, 220 * sy)
-      ..lineTo(40 * sx, 220 * sy)
-      ..lineTo(40 * sx, 90 * sy)
-      ..lineTo(100 * sx, 90 * sy);
+      ..moveTo(cx - dHalfW, dY)
+      ..lineTo(loopX, dY)
+      ..lineTo(loopX, yAt(1))
+      ..lineTo(cx - boxW / 2, yAt(1));
     canvas.drawPath(
       noPath,
       Paint()
@@ -252,21 +268,33 @@ class _WorkflowPainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.5,
     );
+    // Arrowhead on No loop
+    final arrowTip = cx - boxW / 2;
+    final arrowY = yAt(1);
+    canvas.drawPath(
+      Path()
+        ..moveTo(arrowTip, arrowY)
+        ..lineTo(arrowTip - 6, arrowY - 4)
+        ..lineTo(arrowTip - 6, arrowY + 4)
+        ..close(),
+      Paint()..color = const Color(0xFFFF6B6B).withValues(alpha: 0.5),
+    );
 
     // Labels
+    final labelSize = (boxH * 0.26).clamp(9.0, 13.0);
     _drawText(
       canvas,
       'Sim ✓',
-      Offset(175 * sx, 250 * sy),
+      Offset(cx + 10, dY + dHalfH + 2),
       const Color(0xFF00E676),
-      9 * sx,
+      labelSize,
     );
     _drawText(
       canvas,
       'Não ✗',
-      Offset(55 * sx, 205 * sy),
+      Offset(loopX + 4, dY - labelSize - 6),
       const Color(0xFFFF6B6B),
-      9 * sx,
+      labelSize,
     );
   }
 

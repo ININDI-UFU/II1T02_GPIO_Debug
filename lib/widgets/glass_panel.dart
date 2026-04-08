@@ -246,34 +246,35 @@ class SlideTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = (MediaQuery.of(context).size.width / 960).clamp(0.5, 1.6);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 32,
+            fontSize: 38 * s,
             fontWeight: FontWeight.w800,
             letterSpacing: -0.3,
           ),
         ),
         if (subtitle != null) ...[
-          const SizedBox(height: 6),
+          SizedBox(height: 6 * s),
           Text(
             subtitle!,
             style: TextStyle(
               color: accentColor.withValues(alpha: 0.75),
-              fontSize: 16,
+              fontSize: 18 * s,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.2,
             ),
           ),
         ],
-        const SizedBox(height: 4),
+        SizedBox(height: 4 * s),
         Container(
-          width: 70,
+          width: 90 * s,
           height: 3,
           decoration: BoxDecoration(
             color: accentColor,
