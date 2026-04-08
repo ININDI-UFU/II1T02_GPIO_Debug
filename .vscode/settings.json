@@ -1,3 +1,3 @@
 {
-  "dart.flutterWidgetPreviews": true
+  "dart.flutterWidgetPreview": "startEagerly"
 }
