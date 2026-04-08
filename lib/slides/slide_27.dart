@@ -21,7 +21,7 @@ class Slide27 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Serial Monitor
                 Expanded(

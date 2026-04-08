@@ -22,7 +22,7 @@ class Slide14 extends StatelessWidget {
           SizedBox(height: 28 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 5,
@@ -33,8 +33,11 @@ class Slide14 extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.bug_report_rounded,
-                              color: const Color(0xFF7C4DFF), size: 40 * s),
+                          Icon(
+                            Icons.bug_report_rounded,
+                            color: const Color(0xFF7C4DFF),
+                            size: 40 * s,
+                          ),
                           SizedBox(height: 16 * s),
                           Text(
                             'Debug é o processo de identificar, localizar e corrigir erros em software.',
@@ -71,16 +74,20 @@ class Slide14 extends StatelessWidget {
                     opacity: step >= 2 ? 1.0 : 0.0,
                     duration: const Duration(milliseconds: 500),
                     child: GlassPanel(
-                      borderColor:
-                          const Color(0xFFFFD54F).withValues(alpha: 0.2),
+                      borderColor: const Color(
+                        0xFFFFD54F,
+                      ).withValues(alpha: 0.2),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.history_edu_rounded,
-                                  color: const Color(0xFFFFD54F), size: 24 * s),
+                              Icon(
+                                Icons.history_edu_rounded,
+                                color: const Color(0xFFFFD54F),
+                                size: 24 * s,
+                              ),
                               SizedBox(width: 8 * s),
                               Text(
                                 'Origem Histórica',
@@ -105,8 +112,9 @@ class Slide14 extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(12 * s),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFFFD54F)
-                                  .withValues(alpha: 0.08),
+                              color: const Color(
+                                0xFFFFD54F,
+                              ).withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -136,8 +144,11 @@ class _BulletPoint extends StatelessWidget {
   final String text;
   final Color color;
   final double s;
-  const _BulletPoint(
-      {required this.text, required this.color, required this.s});
+  const _BulletPoint({
+    required this.text,
+    required this.color,
+    required this.s,
+  });
 
   @override
   Widget build(BuildContext context) {

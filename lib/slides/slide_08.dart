@@ -22,7 +22,7 @@ class Slide08 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 45,
@@ -52,14 +52,16 @@ class Slide08 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _StateChip(
-                                  label: 'Solto → LOW',
-                                  color: const Color(0xFFFF6B6B),
-                                  s: s),
+                                label: 'Solto → LOW',
+                                color: const Color(0xFFFF6B6B),
+                                s: s,
+                              ),
                               SizedBox(width: 12 * s),
                               _StateChip(
-                                  label: 'Pressionado → HIGH',
-                                  color: const Color(0xFF00E676),
-                                  s: s),
+                                label: 'Pressionado → HIGH',
+                                color: const Color(0xFF00E676),
+                                s: s,
+                              ),
                             ],
                           ),
                         ],
@@ -145,9 +147,14 @@ class _StateChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: color.withValues(alpha: 0.4)),
       ),
-      child: Text(label,
-          style: TextStyle(
-              color: color, fontSize: 12 * s, fontWeight: FontWeight.w700)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 12 * s,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 }
@@ -162,14 +169,20 @@ class _PullDownCircuitPainter extends CustomPainter {
     final sy = size.height / 250;
 
     // VCC on top connected to button
-    _drawLabel(canvas, '3.3V (VCC)', Offset(150 * sx, 12 * sy),
-        const Color(0xFFFF6B6B), 11);
+    _drawLabel(
+      canvas,
+      '3.3V (VCC)',
+      Offset(150 * sx, 12 * sy),
+      const Color(0xFFFF6B6B),
+      11,
+    );
     canvas.drawLine(
-        Offset(150 * sx, 22 * sy),
-        Offset(150 * sx, 55 * sy),
-        Paint()
-          ..color = const Color(0xFFFF6B6B)
-          ..strokeWidth = 2);
+      Offset(150 * sx, 22 * sy),
+      Offset(150 * sx, 55 * sy),
+      Paint()
+        ..color = const Color(0xFFFF6B6B)
+        ..strokeWidth = 2,
+    );
 
     // Button
     final btnPaint = Paint()
@@ -179,28 +192,45 @@ class _PullDownCircuitPainter extends CustomPainter {
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromCenter(
-            center: Offset(150 * sx, 65 * sy), width: 40 * sx, height: 20 * sy),
+          center: Offset(150 * sx, 65 * sy),
+          width: 40 * sx,
+          height: 20 * sy,
+        ),
         Radius.circular(4 * sx),
       ),
       btnPaint,
     );
     _drawLabel(
-        canvas, 'BTN', Offset(150 * sx, 65 * sy), const Color(0xFF7C4DFF), 10);
+      canvas,
+      'BTN',
+      Offset(150 * sx, 65 * sy),
+      const Color(0xFF7C4DFF),
+      10,
+    );
 
     // Wire to GPIO node
     canvas.drawLine(
-        Offset(150 * sx, 75 * sy),
-        Offset(150 * sx, 120 * sy),
-        Paint()
-          ..color = Colors.white.withValues(alpha: 0.5)
-          ..strokeWidth = 2);
+      Offset(150 * sx, 75 * sy),
+      Offset(150 * sx, 120 * sy),
+      Paint()
+        ..color = Colors.white.withValues(alpha: 0.5)
+        ..strokeWidth = 2,
+    );
 
     // GPIO node
-    canvas.drawCircle(Offset(150 * sx, 125 * sy), 6 * sx,
-        Paint()..color = const Color(0xFF00D9FF));
+    canvas.drawCircle(
+      Offset(150 * sx, 125 * sy),
+      6 * sx,
+      Paint()..color = const Color(0xFF00D9FF),
+    );
     _drawLabel(
-        canvas, 'GPIO', Offset(170 * sx, 120 * sy), const Color(0xFF00D9FF), 12,
-        align: TextAlign.left);
+      canvas,
+      'GPIO',
+      Offset(170 * sx, 120 * sy),
+      const Color(0xFF00D9FF),
+      12,
+      align: TextAlign.left,
+    );
 
     // Resistor to GND
     final resPaint = Paint()
@@ -215,16 +245,22 @@ class _PullDownCircuitPainter extends CustomPainter {
     resPath.lineTo(150 * sx, 204 * sy);
     canvas.drawPath(resPath, resPaint);
     _drawLabel(
-        canvas, '10kΩ', Offset(180 * sx, 165 * sy), const Color(0xFFFFD54F), 11,
-        align: TextAlign.left);
+      canvas,
+      '10kΩ',
+      Offset(180 * sx, 165 * sy),
+      const Color(0xFFFFD54F),
+      11,
+      align: TextAlign.left,
+    );
 
     // GND
     canvas.drawLine(
-        Offset(150 * sx, 204 * sy),
-        Offset(150 * sx, 225 * sy),
-        Paint()
-          ..color = const Color(0xFF00E676)
-          ..strokeWidth = 2);
+      Offset(150 * sx, 204 * sy),
+      Offset(150 * sx, 225 * sy),
+      Paint()
+        ..color = const Color(0xFF00E676)
+        ..strokeWidth = 2,
+    );
     for (int i = 0; i < 3; i++) {
       final w = (20 - i * 6) * sx;
       canvas.drawLine(
@@ -236,23 +272,37 @@ class _PullDownCircuitPainter extends CustomPainter {
       );
     }
     _drawLabel(
-        canvas, 'GND', Offset(150 * sx, 244 * sy), const Color(0xFF00E676), 11);
+      canvas,
+      'GND',
+      Offset(150 * sx, 244 * sy),
+      const Color(0xFF00E676),
+      11,
+    );
   }
 
   void _drawLabel(
-      Canvas canvas, String text, Offset pos, Color color, double fontSize,
-      {TextAlign align = TextAlign.center}) {
+    Canvas canvas,
+    String text,
+    Offset pos,
+    Color color,
+    double fontSize, {
+    TextAlign align = TextAlign.center,
+  }) {
     final tp = TextPainter(
       text: TextSpan(
-          text: text,
-          style: TextStyle(
-              color: color, fontSize: fontSize, fontWeight: FontWeight.w600)),
+        text: text,
+        style: TextStyle(
+          color: color,
+          fontSize: fontSize,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
       textDirection: TextDirection.ltr,
     )..layout();
     tp.paint(
-        canvas,
-        Offset(
-            pos.dx - (align == TextAlign.center ? tp.width / 2 : 0), pos.dy));
+      canvas,
+      Offset(pos.dx - (align == TextAlign.center ? tp.width / 2 : 0), pos.dy),
+    );
   }
 
   @override

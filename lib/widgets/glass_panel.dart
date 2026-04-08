@@ -53,8 +53,9 @@ class CodeBlock extends StatelessWidget {
   });
 
   static const _langMap = {
-    'cpp': 'cpp',
-    'c': 'cpp',
+    'cpp': 'arduino',
+    'c': 'arduino',
+    'arduino': 'arduino',
     'python': 'python',
     'json': 'json',
     'yaml': 'yaml',
@@ -130,14 +131,14 @@ class InfoCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: accentColor, size: 22),
+              Icon(icon, color: accentColor, size: 35),
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
                   title,
                   style: TextStyle(
                     color: accentColor,
-                    fontSize: titleFontSize ?? 15,
+                    fontSize: titleFontSize ?? 18,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.3,
                   ),
@@ -150,7 +151,7 @@ class InfoCard extends StatelessWidget {
             description,
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.75),
-              fontSize: descFontSize ?? 13.5,
+              fontSize: descFontSize ?? 15,
               height: 1.5,
             ),
           ),

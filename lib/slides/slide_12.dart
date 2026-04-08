@@ -21,19 +21,21 @@ class Slide12 extends StatelessWidget {
           SizedBox(height: 20 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Left: techniques
                 Expanded(
                   flex: 4,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AnimatedOpacity(
                         opacity: step >= 1 ? 1.0 : 0.0,
                         duration: const Duration(milliseconds: 500),
                         child: InfoCard(
-                          title: '💻 Software — millis()',
-                          description: 'if (reading != lastState) {\n'
+                          title: 'Software — millis(),'
+                          description:
+                              'if (reading != lastState) {\n'
                               '  lastDebounce = millis();\n'
                               '}\n'
                               'if (millis()-lastDebounce > 50) {\n'
@@ -41,20 +43,25 @@ class Slide12 extends StatelessWidget {
                               '}',
                           icon: Icons.code_rounded,
                           accentColor: const Color(0xFF00D9FF),
+                          titleFontSize: 25,
+                          descFontSize: 20,
                         ),
                       ),
-                      SizedBox(height: 12 * s),
+                      SizedBox(height: 16 * s),
                       AnimatedOpacity(
                         opacity: step >= 2 ? 1.0 : 0.0,
                         duration: const Duration(milliseconds: 500),
                         child: InfoCard(
-                          title: '⚡ Hardware — Filtro RC',
-                          description: 'Capacitor em paralelo com o botão:\n'
+                          title: 'Hardware — Filtro RC',
+                          description:
+                              'Capacitor em paralelo com o botão:\n'
                               'R = 10kΩ + C = 100nF\n'
                               'τ = R × C = 1ms\n'
                               'O capacitor absorve as oscilações',
                           icon: Icons.electrical_services_rounded,
                           accentColor: const Color(0xFFFF9F0A),
+                          titleFontSize: 25,
+                          descFontSize: 20,
                         ),
                       ),
                     ],
@@ -72,10 +79,13 @@ class Slide12 extends StatelessWidget {
                       children: [
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 12 * s, vertical: 6 * s),
+                            horizontal: 12 * s,
+                            vertical: 6 * s,
+                          ),
                           decoration: BoxDecoration(
-                            color:
-                                const Color(0xFF00E676).withValues(alpha: 0.15),
+                            color: const Color(
+                              0xFF00E676,
+                            ).withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(

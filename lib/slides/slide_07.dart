@@ -22,7 +22,7 @@ class Slide07 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Circuit diagram
                 Expanded(
@@ -53,14 +53,16 @@ class Slide07 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _StateChip(
-                                  label: 'Solto → HIGH',
-                                  color: const Color(0xFF00E676),
-                                  s: s),
+                                label: 'Solto → HIGH',
+                                color: const Color(0xFF00E676),
+                                s: s,
+                              ),
                               SizedBox(width: 12 * s),
                               _StateChip(
-                                  label: 'Pressionado → LOW',
-                                  color: const Color(0xFFFF6B6B),
-                                  s: s),
+                                label: 'Pressionado → LOW',
+                                color: const Color(0xFFFF6B6B),
+                                s: s,
+                              ),
                             ],
                           ),
                         ],
@@ -106,18 +108,23 @@ class Slide07 extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(14 * s),
                           decoration: BoxDecoration(
-                            color:
-                                const Color(0xFFFFD54F).withValues(alpha: 0.1),
+                            color: const Color(
+                              0xFFFFD54F,
+                            ).withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: const Color(0xFFFFD54F)
-                                  .withValues(alpha: 0.3),
+                              color: const Color(
+                                0xFFFFD54F,
+                              ).withValues(alpha: 0.3),
                             ),
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.warning_amber_rounded,
-                                  color: const Color(0xFFFFD54F), size: 20 * s),
+                              Icon(
+                                Icons.warning_amber_rounded,
+                                color: const Color(0xFFFFD54F),
+                                size: 20 * s,
+                              ),
                               SizedBox(width: 10 * s),
                               Expanded(
                                 child: Text(
@@ -172,7 +179,10 @@ class _StateChip extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-            color: color, fontSize: 12 * s, fontWeight: FontWeight.w700),
+          color: color,
+          fontSize: 12 * s,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
@@ -193,11 +203,20 @@ class _PullUpCircuitPainter extends CustomPainter {
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
     canvas.drawLine(
-        Offset(150 * sx, 20 * sy), Offset(150 * sx, 50 * sy), vccPaint);
+      Offset(150 * sx, 20 * sy),
+      Offset(150 * sx, 50 * sy),
+      vccPaint,
+    );
 
     // VCC label
-    _drawLabel(canvas, '3.3V (VCC)', Offset(150 * sx, 12 * sy),
-        const Color(0xFFFF6B6B), 11, TextAlign.center);
+    _drawLabel(
+      canvas,
+      '3.3V (VCC)',
+      Offset(150 * sx, 12 * sy),
+      const Color(0xFFFF6B6B),
+      11,
+      TextAlign.center,
+    );
 
     // Resistor (zigzag)
     final resPaint = Paint()
@@ -212,8 +231,14 @@ class _PullUpCircuitPainter extends CustomPainter {
     }
     resPath.lineTo(150 * sx, 122 * sy);
     canvas.drawPath(resPath, resPaint);
-    _drawLabel(canvas, '10kΩ', Offset(180 * sx, 80 * sy),
-        const Color(0xFFFFD54F), 11, TextAlign.left);
+    _drawLabel(
+      canvas,
+      '10kΩ',
+      Offset(180 * sx, 80 * sy),
+      const Color(0xFFFFD54F),
+      11,
+      TextAlign.left,
+    );
 
     // GPIO node
     canvas.drawCircle(
@@ -221,8 +246,14 @@ class _PullUpCircuitPainter extends CustomPainter {
       6 * sx,
       Paint()..color = const Color(0xFF00D9FF),
     );
-    _drawLabel(canvas, 'GPIO', Offset(170 * sx, 125 * sy),
-        const Color(0xFF00D9FF), 12, TextAlign.left);
+    _drawLabel(
+      canvas,
+      'GPIO',
+      Offset(170 * sx, 125 * sy),
+      const Color(0xFF00D9FF),
+      12,
+      TextAlign.left,
+    );
 
     // Wire to button
     canvas.drawLine(
@@ -241,15 +272,22 @@ class _PullUpCircuitPainter extends CustomPainter {
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromCenter(
-            center: Offset(150 * sx, 185 * sy),
-            width: 40 * sx,
-            height: 20 * sy),
+          center: Offset(150 * sx, 185 * sy),
+          width: 40 * sx,
+          height: 20 * sy,
+        ),
         Radius.circular(4 * sx),
       ),
       btnPaint,
     );
-    _drawLabel(canvas, 'BTN', Offset(150 * sx, 185 * sy),
-        const Color(0xFF7C4DFF), 10, TextAlign.center);
+    _drawLabel(
+      canvas,
+      'BTN',
+      Offset(150 * sx, 185 * sy),
+      const Color(0xFF7C4DFF),
+      10,
+      TextAlign.center,
+    );
 
     // GND line
     canvas.drawLine(
@@ -270,25 +308,40 @@ class _PullUpCircuitPainter extends CustomPainter {
           ..strokeWidth = 2,
       );
     }
-    _drawLabel(canvas, 'GND', Offset(150 * sx, 248 * sy),
-        const Color(0xFF00E676), 11, TextAlign.center);
+    _drawLabel(
+      canvas,
+      'GND',
+      Offset(150 * sx, 248 * sy),
+      const Color(0xFF00E676),
+      11,
+      TextAlign.center,
+    );
   }
 
-  void _drawLabel(Canvas canvas, String text, Offset pos, Color color,
-      double fontSize, TextAlign align) {
+  void _drawLabel(
+    Canvas canvas,
+    String text,
+    Offset pos,
+    Color color,
+    double fontSize,
+    TextAlign align,
+  ) {
     final tp = TextPainter(
       text: TextSpan(
         text: text,
         style: TextStyle(
-            color: color, fontSize: fontSize, fontWeight: FontWeight.w600),
+          color: color,
+          fontSize: fontSize,
+          fontWeight: FontWeight.w600,
+        ),
       ),
       textDirection: TextDirection.ltr,
       textAlign: align,
     )..layout();
     tp.paint(
-        canvas,
-        Offset(
-            pos.dx - (align == TextAlign.center ? tp.width / 2 : 0), pos.dy));
+      canvas,
+      Offset(pos.dx - (align == TextAlign.center ? tp.width / 2 : 0), pos.dy),
+    );
   }
 
   @override

@@ -21,7 +21,7 @@ class Slide16 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Flowchart
                 Expanded(
@@ -47,44 +47,55 @@ class Slide16 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Técnicas Essenciais',
-                            style: TextStyle(
-                                color: const Color(0xFF00D9FF),
-                                fontSize: 15 * s,
-                                fontWeight: FontWeight.w700)),
+                        Text(
+                          'Técnicas Essenciais',
+                          style: TextStyle(
+                            color: const Color(0xFF00D9FF),
+                            fontSize: 15 * s,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         SizedBox(height: 12 * s),
                         _TechChip(
-                            label: 'Breakpoints e Step-through',
-                            color: const Color(0xFF00D9FF),
-                            s: s),
+                          label: 'Breakpoints e Step-through',
+                          color: const Color(0xFF00D9FF),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Print/Log Debugging',
-                            color: const Color(0xFF7C4DFF),
-                            s: s),
+                          label: 'Print/Log Debugging',
+                          color: const Color(0xFF7C4DFF),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Watch Variables',
-                            color: const Color(0xFF00E676),
-                            s: s),
+                          label: 'Watch Variables',
+                          color: const Color(0xFF00E676),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Call Stack Analysis',
-                            color: const Color(0xFFFF9F0A),
-                            s: s),
+                          label: 'Call Stack Analysis',
+                          color: const Color(0xFFFF9F0A),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Rubber Duck Debugging',
-                            color: const Color(0xFFFFD54F),
-                            s: s),
+                          label: 'Rubber Duck Debugging',
+                          color: const Color(0xFFFFD54F),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Binary Search (bisect)',
-                            color: const Color(0xFFFF6B6B),
-                            s: s),
+                          label: 'Binary Search (bisect)',
+                          color: const Color(0xFFFF6B6B),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Unit Tests',
-                            color: const Color(0xFF00D9FF),
-                            s: s),
+                          label: 'Unit Tests',
+                          color: const Color(0xFF00D9FF),
+                          s: s,
+                        ),
                         _TechChip(
-                            label: 'Profiling',
-                            color: const Color(0xFF7C4DFF),
-                            s: s),
+                          label: 'Profiling',
+                          color: const Color(0xFF7C4DFF),
+                          s: s,
+                        ),
                       ],
                     ),
                   ),
@@ -119,16 +130,19 @@ class _TechChip extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-                width: 6 * s,
-                height: 6 * s,
-                decoration:
-                    BoxDecoration(color: color, shape: BoxShape.circle)),
+              width: 6 * s,
+              height: 6 * s,
+              decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            ),
             SizedBox(width: 8 * s),
-            Text(label,
-                style: TextStyle(
-                    color: color,
-                    fontSize: 12 * s,
-                    fontWeight: FontWeight.w600)),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+                fontSize: 12 * s,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
@@ -194,10 +208,11 @@ class _WorkflowPainter extends CustomPainter {
         text: TextSpan(
           text: text,
           style: TextStyle(
-              color: color,
-              fontSize: 10 * sx,
-              fontWeight: FontWeight.w600,
-              height: 1.3),
+            color: color,
+            fontSize: 10 * sx,
+            fontWeight: FontWeight.w600,
+            height: 1.3,
+          ),
         ),
         textAlign: TextAlign.center,
         textDirection: TextDirection.ltr,
@@ -208,17 +223,22 @@ class _WorkflowPainter extends CustomPainter {
       if (i < steps.length - 1 && i != 3) {
         final nextY = steps[i + 1].$4 * sy;
         _drawArrow(
-            canvas,
-            Offset(cx, cy + h),
-            Offset(cx, nextY - (i + 1 == 3 ? 45 * sy : 35 * sy)),
-            Colors.white.withValues(alpha: 0.4));
+          canvas,
+          Offset(cx, cy + h),
+          Offset(cx, nextY - (i + 1 == 3 ? 45 * sy : 35 * sy)),
+          Colors.white.withValues(alpha: 0.4),
+        );
       }
     }
 
     // Decision arrows
     // Yes -> down
-    _drawArrow(canvas, Offset(160 * sx, 265 * sy), Offset(160 * sx, 260 * sy),
-        const Color(0xFF00E676));
+    _drawArrow(
+      canvas,
+      Offset(160 * sx, 265 * sy),
+      Offset(160 * sx, 260 * sy),
+      const Color(0xFF00E676),
+    );
     // No -> loop back
     final noPath = Path()
       ..moveTo(80 * sx, 220 * sy)
@@ -226,36 +246,57 @@ class _WorkflowPainter extends CustomPainter {
       ..lineTo(40 * sx, 90 * sy)
       ..lineTo(100 * sx, 90 * sy);
     canvas.drawPath(
-        noPath,
-        Paint()
-          ..color = const Color(0xFFFF6B6B).withValues(alpha: 0.5)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.5);
+      noPath,
+      Paint()
+        ..color = const Color(0xFFFF6B6B).withValues(alpha: 0.5)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5,
+    );
 
     // Labels
-    _drawText(canvas, 'Sim ✓', Offset(175 * sx, 250 * sy),
-        const Color(0xFF00E676), 9 * sx);
-    _drawText(canvas, 'Não ✗', Offset(55 * sx, 205 * sy),
-        const Color(0xFFFF6B6B), 9 * sx);
+    _drawText(
+      canvas,
+      'Sim ✓',
+      Offset(175 * sx, 250 * sy),
+      const Color(0xFF00E676),
+      9 * sx,
+    );
+    _drawText(
+      canvas,
+      'Não ✗',
+      Offset(55 * sx, 205 * sy),
+      const Color(0xFFFF6B6B),
+      9 * sx,
+    );
   }
 
   void _drawArrow(Canvas canvas, Offset from, Offset to, Color color) {
     canvas.drawLine(
-        from,
-        to,
-        Paint()
-          ..color = color
-          ..strokeWidth = 1.5
-          ..style = PaintingStyle.stroke);
+      from,
+      to,
+      Paint()
+        ..color = color
+        ..strokeWidth = 1.5
+        ..style = PaintingStyle.stroke,
+    );
   }
 
   void _drawText(
-      Canvas canvas, String text, Offset pos, Color color, double fontSize) {
+    Canvas canvas,
+    String text,
+    Offset pos,
+    Color color,
+    double fontSize,
+  ) {
     final tp = TextPainter(
       text: TextSpan(
-          text: text,
-          style: TextStyle(
-              color: color, fontSize: fontSize, fontWeight: FontWeight.w600)),
+        text: text,
+        style: TextStyle(
+          color: color,
+          fontSize: fontSize,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
       textDirection: TextDirection.ltr,
     )..layout();
     tp.paint(canvas, pos);

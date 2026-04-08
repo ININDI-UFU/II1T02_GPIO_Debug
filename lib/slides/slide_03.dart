@@ -22,7 +22,7 @@ class Slide03 extends StatelessWidget {
           SizedBox(height: 16 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // INPUT card
                 Expanded(

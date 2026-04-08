@@ -20,11 +20,11 @@ class Slide04 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Code block
                 Expanded(
-                  flex: 55,
+                  flex: 50,
                   child: AnimatedOpacity(
                     opacity: step >= 1 ? 1.0 : 0.0,
                     duration: const Duration(milliseconds: 500),
@@ -52,8 +52,9 @@ void loop() {
                 SizedBox(width: 20 * s),
                 // Function cards
                 Expanded(
-                  flex: 45,
+                  flex: 50,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AnimatedOpacity(
                         opacity: step >= 2 ? 1.0 : 0.0,
@@ -64,8 +65,8 @@ void loop() {
                               'Configura o pino como INPUT ou OUTPUT no setup()',
                           icon: Icons.settings_rounded,
                           accentColor: const Color(0xFF00D9FF),
-                          titleFontSize: 16,
-                          descFontSize: 14,
+                          titleFontSize: 18,
+                          descFontSize: 15,
                         ),
                       ),
                       SizedBox(height: 14 * s),
@@ -78,8 +79,8 @@ void loop() {
                               'Retorna HIGH ou LOW conforme o estado do pino',
                           icon: Icons.visibility_rounded,
                           accentColor: const Color(0xFF00E676),
-                          titleFontSize: 16,
-                          descFontSize: 14,
+                          titleFontSize: 18,
+                          descFontSize: 15,
                         ),
                       ),
                       SizedBox(height: 14 * s),
@@ -92,8 +93,8 @@ void loop() {
                               'Define o pino para HIGH (3.3V) ou LOW (0V)',
                           icon: Icons.edit_rounded,
                           accentColor: const Color(0xFF7C4DFF),
-                          titleFontSize: 16,
-                          descFontSize: 14,
+                          titleFontSize: 18,
+                          descFontSize: 15,
                         ),
                       ),
                     ],

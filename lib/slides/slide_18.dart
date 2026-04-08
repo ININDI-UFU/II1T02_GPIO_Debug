@@ -21,7 +21,7 @@ class Slide18 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Code
                 Expanded(
@@ -32,11 +32,14 @@ class Slide18 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('.vscode/launch.json',
-                            style: TextStyle(
-                                color: Colors.white.withValues(alpha: 0.5),
-                                fontSize: 12 * s,
-                                fontFamily: 'Courier New')),
+                        Text(
+                          '.vscode/launch.json',
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.5),
+                            fontSize: 12 * s,
+                            fontFamily: 'Courier New',
+                          ),
+                        ),
                         SizedBox(height: 8 * s),
                         Expanded(
                           child: CodeBlock(
@@ -69,37 +72,42 @@ class Slide18 extends StatelessWidget {
                       child: Column(
                         children: [
                           _FieldCard(
-                              field: '"name"',
-                              desc: 'Nome exibido no menu dropdown do debugger',
-                              color: const Color(0xFF00D9FF),
-                              s: s),
+                            field: '"name"',
+                            desc: 'Nome exibido no menu dropdown do debugger',
+                            color: const Color(0xFF00D9FF),
+                            s: s,
+                          ),
                           SizedBox(height: 8 * s),
                           _FieldCard(
-                              field: '"type"',
-                              desc:
-                                  'Motor de debug utilizado (debugpy, node, cppdbg...)',
-                              color: const Color(0xFF7C4DFF),
-                              s: s),
+                            field: '"type"',
+                            desc:
+                                'Motor de debug utilizado (debugpy, node, cppdbg...)',
+                            color: const Color(0xFF7C4DFF),
+                            s: s,
+                          ),
                           SizedBox(height: 8 * s),
                           _FieldCard(
-                              field: '"request"',
-                              desc:
-                                  'launch = inicia o programa / attach = conecta a processo',
-                              color: const Color(0xFF00E676),
-                              s: s),
+                            field: '"request"',
+                            desc:
+                                'launch = inicia o programa / attach = conecta a processo',
+                            color: const Color(0xFF00E676),
+                            s: s,
+                          ),
                           SizedBox(height: 8 * s),
                           _FieldCard(
-                              field: '"program"',
-                              desc:
-                                  'Caminho do arquivo a ser depurado (variáveis aceitas)',
-                              color: const Color(0xFFFF9F0A),
-                              s: s),
+                            field: '"program"',
+                            desc:
+                                'Caminho do arquivo a ser depurado (variáveis aceitas)',
+                            color: const Color(0xFFFF9F0A),
+                            s: s,
+                          ),
                           SizedBox(height: 8 * s),
                           _FieldCard(
-                              field: '"console"',
-                              desc: 'Terminal para I/O do programa em execução',
-                              color: const Color(0xFFFF6B6B),
-                              s: s),
+                            field: '"console"',
+                            desc: 'Terminal para I/O do programa em execução',
+                            color: const Color(0xFFFF6B6B),
+                            s: s,
+                          ),
                         ],
                       ),
                     ),
@@ -119,11 +127,12 @@ class _FieldCard extends StatelessWidget {
   final String desc;
   final Color color;
   final double s;
-  const _FieldCard(
-      {required this.field,
-      required this.desc,
-      required this.color,
-      required this.s});
+  const _FieldCard({
+    required this.field,
+    required this.desc,
+    required this.color,
+    required this.s,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -137,18 +146,24 @@ class _FieldCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(field,
-              style: TextStyle(
-                  color: color,
-                  fontSize: 13 * s,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Courier New')),
+          Text(
+            field,
+            style: TextStyle(
+              color: color,
+              fontSize: 13 * s,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Courier New',
+            ),
+          ),
           SizedBox(height: 4 * s),
-          Text(desc,
-              style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.7),
-                  fontSize: 12 * s,
-                  height: 1.4)),
+          Text(
+            desc,
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.7),
+              fontSize: 12 * s,
+              height: 1.4,
+            ),
+          ),
         ],
       ),
     );

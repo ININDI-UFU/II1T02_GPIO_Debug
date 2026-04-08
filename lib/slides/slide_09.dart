@@ -25,6 +25,7 @@ class Slide09 extends StatelessWidget {
               opacity: step >= 1 ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 500),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildTable(s),
                   SizedBox(height: 20 * s),
@@ -37,7 +38,8 @@ class Slide09 extends StatelessWidget {
                         Expanded(
                           child: InfoCard(
                             title: 'Interno (ESP32)',
-                            description: 'Ativado via software (INPUT_PULLUP)\n'
+                            description:
+                                'Ativado via software (INPUT_PULLUP)\n'
                                 '~45kΩ — suficiente para maioria dos casos\n'
                                 'Simplifica o circuito (sem componente extra)',
                             icon: Icons.memory_rounded,
@@ -117,16 +119,20 @@ class Slide09 extends StatelessWidget {
               color: const Color(0xFF00D9FF).withValues(alpha: 0.1),
             ),
             children: headers
-                .map((h) => Padding(
-                      padding: EdgeInsets.all(10 * s),
-                      child: Text(h,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: const Color(0xFF00D9FF),
-                            fontSize: 12 * s,
-                            fontWeight: FontWeight.w700,
-                          )),
-                    ))
+                .map(
+                  (h) => Padding(
+                    padding: EdgeInsets.all(10 * s),
+                    child: Text(
+                      h,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: const Color(0xFF00D9FF),
+                        fontSize: 12 * s,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           ...rows.map(

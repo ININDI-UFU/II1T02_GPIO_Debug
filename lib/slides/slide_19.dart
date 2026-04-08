@@ -22,7 +22,7 @@ class Slide19 extends StatelessWidget {
           SizedBox(height: 24 * s),
           Expanded(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Navigation controls
                 Expanded(
@@ -33,48 +33,57 @@ class Slide19 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Controles de Navegação',
-                            style: TextStyle(
-                                color: const Color(0xFF00D9FF),
-                                fontSize: 15 * s,
-                                fontWeight: FontWeight.w700)),
+                        Text(
+                          'Controles de Navegação',
+                          style: TextStyle(
+                            color: const Color(0xFF00D9FF),
+                            fontSize: 15 * s,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         SizedBox(height: 12 * s),
                         _ControlItem(
-                            key_: 'F5',
-                            label: 'Continue',
-                            desc: 'Retoma até o próximo breakpoint',
-                            color: const Color(0xFF00E676),
-                            s: s),
+                          key_: 'F5',
+                          label: 'Continue',
+                          desc: 'Retoma até o próximo breakpoint',
+                          color: const Color(0xFF00E676),
+                          s: s,
+                        ),
                         _ControlItem(
-                            key_: 'F10',
-                            label: 'Step Over',
-                            desc: 'Executa a linha sem entrar na função',
-                            color: const Color(0xFF00D9FF),
-                            s: s),
+                          key_: 'F10',
+                          label: 'Step Over',
+                          desc: 'Executa a linha sem entrar na função',
+                          color: const Color(0xFF00D9FF),
+                          s: s,
+                        ),
                         _ControlItem(
-                            key_: 'F11',
-                            label: 'Step Into',
-                            desc: 'Entra dentro da função chamada',
-                            color: const Color(0xFF7C4DFF),
-                            s: s),
+                          key_: 'F11',
+                          label: 'Step Into',
+                          desc: 'Entra dentro da função chamada',
+                          color: const Color(0xFF7C4DFF),
+                          s: s,
+                        ),
                         _ControlItem(
-                            key_: '⇧F11',
-                            label: 'Step Out',
-                            desc: 'Sai da função atual para o caller',
-                            color: const Color(0xFFFF9F0A),
-                            s: s),
+                          key_: '⇧F11',
+                          label: 'Step Out',
+                          desc: 'Sai da função atual para o caller',
+                          color: const Color(0xFFFF9F0A),
+                          s: s,
+                        ),
                         _ControlItem(
-                            key_: '⇧⌘F5',
-                            label: 'Restart',
-                            desc: 'Reinicia a sessão de debug do zero',
-                            color: const Color(0xFFFFD54F),
-                            s: s),
+                          key_: '⇧⌘F5',
+                          label: 'Restart',
+                          desc: 'Reinicia a sessão de debug do zero',
+                          color: const Color(0xFFFFD54F),
+                          s: s,
+                        ),
                         _ControlItem(
-                            key_: '⇧F5',
-                            label: 'Stop',
-                            desc: 'Encerra a sessão de depuração',
-                            color: const Color(0xFFFF6B6B),
-                            s: s),
+                          key_: '⇧F5',
+                          label: 'Stop',
+                          desc: 'Encerra a sessão de depuração',
+                          color: const Color(0xFFFF6B6B),
+                          s: s,
+                        ),
                       ],
                     ),
                   ),
@@ -89,40 +98,46 @@ class Slide19 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Tipos de Breakpoints',
-                            style: TextStyle(
-                                color: const Color(0xFF7C4DFF),
-                                fontSize: 15 * s,
-                                fontWeight: FontWeight.w700)),
+                        Text(
+                          'Tipos de Breakpoints',
+                          style: TextStyle(
+                            color: const Color(0xFF7C4DFF),
+                            fontSize: 15 * s,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         SizedBox(height: 12 * s),
                         _BpCard(
-                            icon: '●',
-                            title: 'Standard',
-                            desc:
-                                'Ponto de parada fixo em uma linha específica',
-                            color: const Color(0xFFFF6B6B),
-                            s: s),
+                          icon: '●',
+                          title: 'Standard',
+                          desc: 'Ponto de parada fixo em uma linha específica',
+                          color: const Color(0xFFFF6B6B),
+                          s: s,
+                        ),
                         SizedBox(height: 8 * s),
                         _BpCard(
-                            icon: '◆',
-                            title: 'Conditional',
-                            desc: 'Para apenas quando a condição é verdadeira',
-                            color: const Color(0xFFFF9F0A),
-                            s: s),
+                          icon: '◆',
+                          title: 'Conditional',
+                          desc: 'Para apenas quando a condição é verdadeira',
+                          color: const Color(0xFFFF9F0A),
+                          s: s,
+                        ),
                         SizedBox(height: 8 * s),
                         _BpCard(
-                            icon: '◇',
-                            title: 'Logpoint',
-                            desc: 'Loga uma mensagem sem parar a execução',
-                            color: const Color(0xFF00D9FF),
-                            s: s),
+                          icon: '◇',
+                          title: 'Logpoint',
+                          desc: 'Loga uma mensagem sem parar a execução',
+                          color: const Color(0xFF00D9FF),
+                          s: s,
+                        ),
                         SizedBox(height: 8 * s),
                         _BpCard(
-                            icon: '⊕',
-                            title: 'Hit Count',
-                            desc: 'Para após N execuções da mesma linha',
-                            color: const Color(0xFF00E676),
-                            s: s),
+                          icon: '⊕',
+                          title: 'Hit Count',
+                          desc: 'Para após N execuções da mesma linha',
+                          color: const Color(0xFF00E676),
+                          s: s,
+                        ),
                       ],
                     ),
                   ),
@@ -142,12 +157,13 @@ class _ControlItem extends StatelessWidget {
   final String desc;
   final Color color;
   final double s;
-  const _ControlItem(
-      {required this.key_,
-      required this.label,
-      required this.desc,
-      required this.color,
-      required this.s});
+  const _ControlItem({
+    required this.key_,
+    required this.label,
+    required this.desc,
+    required this.color,
+    required this.s,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -164,27 +180,37 @@ class _ControlItem extends StatelessWidget {
               border: Border.all(color: color.withValues(alpha: 0.3)),
             ),
             child: Center(
-                child: Text(key_,
-                    style: TextStyle(
-                        color: color,
-                        fontSize: 10 * s,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Courier New'))),
+              child: Text(
+                key_,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 10 * s,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Courier New',
+                ),
+              ),
+            ),
           ),
           SizedBox(width: 10 * s),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
-                    style: TextStyle(
-                        color: color,
-                        fontSize: 12 * s,
-                        fontWeight: FontWeight.w700)),
-                Text(desc,
-                    style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.6),
-                        fontSize: 12 * s)),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 12 * s,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  desc,
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.6),
+                    fontSize: 12 * s,
+                  ),
+                ),
               ],
             ),
           ),
@@ -200,12 +226,13 @@ class _BpCard extends StatelessWidget {
   final String desc;
   final Color color;
   final double s;
-  const _BpCard(
-      {required this.icon,
-      required this.title,
-      required this.desc,
-      required this.color,
-      required this.s});
+  const _BpCard({
+    required this.icon,
+    required this.title,
+    required this.desc,
+    required this.color,
+    required this.s,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -218,23 +245,33 @@ class _BpCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(icon, style: TextStyle(color: color, fontSize: 20 * s)),
+          Text(
+            icon,
+            style: TextStyle(color: color, fontSize: 20 * s),
+          ),
           SizedBox(width: 10 * s),
           Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
                   style: TextStyle(
-                      color: color,
-                      fontSize: 13 * s,
-                      fontWeight: FontWeight.w700)),
-              Text(desc,
+                    color: color,
+                    fontSize: 13 * s,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  desc,
                   style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.65),
-                      fontSize: 12 * s)),
-            ],
-          )),
+                    color: Colors.white.withValues(alpha: 0.65),
+                    fontSize: 12 * s,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
