@@ -33,7 +33,7 @@ class Slide12 extends StatelessWidget {
                         opacity: step >= 1 ? 1.0 : 0.0,
                         duration: const Duration(milliseconds: 500),
                         child: InfoCard(
-                          title: 'Software — millis(),'
+                          title: 'Software — millis()',
                           description:
                               'if (reading != lastState) {\n'
                               '  lastDebounce = millis();\n'
